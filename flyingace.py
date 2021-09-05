@@ -1,4 +1,5 @@
 import pygame as pg
+import plane
 import os
 class Color:
     WHITE = (255, 255, 255)
@@ -25,7 +26,8 @@ class Application:
         self.screen = pg.display.set_mode((Format.WIDTH, Format.HEIGHT))
         self.sprites = pg.sprite.Group()
         pg.display.set_caption('Flying Ace!')
-        
+        self.plane = plane.Plane()
+        self.sprites.add(self.plane)
         
     def gameloop(self):
         while self.running:
