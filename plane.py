@@ -2,7 +2,7 @@ import pygame as pg
 import os, flyingace
 from pygame.sprite import Sprite
 
-pg.mixer.init()
+
 class Plane(Sprite):
     def __init__(self):
         super().__init__()

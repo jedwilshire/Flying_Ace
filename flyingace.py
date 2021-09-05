@@ -1,7 +1,7 @@
 import pygame as pg
-import plane, cloud
+import plane, cloud, enemy
 import os
-
+pg.mixer.init()
 class Color:
     WHITE = (255, 255, 255)
     BLACK = (0, 0, 0)
@@ -18,7 +18,7 @@ class Format:
     game_folder = os.path.dirname(__file__)
     img_folder = os.path.join(game_folder, 'images')
     sounds_folder = os.path.join(game_folder, 'sounds')
-# define colors
+
 
 
 class Application:
@@ -30,6 +30,7 @@ class Application:
         pg.display.set_caption('Flying Ace!')
         self.plane = plane.Plane()       
         self.sprites.add(cloud.Cloud(100, 200), cloud.Cloud(300, 100), cloud.Cloud(500, 300))
+        self.sprites.add(enemy.Enemy(400, 25))
         self.sprites.add(self.plane)
 
     def gameloop(self):
