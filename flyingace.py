@@ -54,14 +54,22 @@ class Application:
     def handle_keydown(self, key):
         if key == pg.K_w:
             self.plane.vy = -Format.PLANE_SPEED
-        if key == pg.K_s:
+        elif key == pg.K_s:
             self.plane.vy = Format.PLANE_SPEED
+        elif key == pg.K_d:
+            self.plane.vx = Format.PLANE_SPEED
+        elif key == pg.K_a:
+            self.plane.vx = -Format.PLANE_SPEED
+            
     def handle_keyup(self, key):
         if key == pg.K_w and self.plane.vy < 0:
             self.plane.vy = 0
         if key == pg.K_s and self.plane.vy > 0:
             self.plane.vy = 0
-   
+        if key == pg.K_a and self.plane.vx < 0:
+            self.plane.vx = 0
+        if key == pg.K_d and self.plane.vx > 0:
+            self.plane.vx = 0
     
 def main():
     pg.init()
