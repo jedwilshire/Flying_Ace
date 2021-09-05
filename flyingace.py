@@ -1,6 +1,7 @@
 import pygame as pg
 import plane
 import os
+
 class Color:
     WHITE = (255, 255, 255)
     BLACK = (0, 0, 0)
@@ -12,7 +13,8 @@ class Color:
 class Format:
     WIDTH = 640
     HEIGHT = 480
-    FPS = 30
+    FPS = 120
+    PLANE_SPEED = 2
     game_folder = os.path.dirname(__file__)
     img_folder = os.path.join(game_folder, 'images')
     sounds_folder = os.path.join(game_folder, 'sounds')
@@ -51,11 +53,14 @@ class Application:
     
     def handle_keydown(self, key):
         if key == pg.K_w:
-            print('w down')
-    
+            self.plane.vy = -Format.PLANE_SPEED
+        if key == pg.K_s:
+            self.plane.vy = Format.PLANE_SPEED
     def handle_keyup(self, key):
-        if key == pg.K_w:
-            print('w up')
+        if key == pg.K_w and self.plane.vy < 0:
+            self.plane.vy = 0
+        if key == pg.K_s and self.plane.vy > 0:
+            self.plane.vy = 0
    
     
 def main():
