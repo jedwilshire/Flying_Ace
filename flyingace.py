@@ -1,5 +1,5 @@
 import pygame as pg
-import plane
+import plane, cloud
 import os
 
 class Color:
@@ -28,9 +28,10 @@ class Application:
         self.screen = pg.display.set_mode((Format.WIDTH, Format.HEIGHT))
         self.sprites = pg.sprite.Group()
         pg.display.set_caption('Flying Ace!')
-        self.plane = plane.Plane()
+        self.plane = plane.Plane()       
+        self.sprites.add(cloud.Cloud(100, 200), cloud.Cloud(300, 100), cloud.Cloud(500, 300))
         self.sprites.add(self.plane)
-        
+
     def gameloop(self):
         while self.running:
             self.clock.tick(Format.FPS)
