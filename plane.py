@@ -10,3 +10,8 @@ class Plane(Sprite):
         self.rect = self.image.get_rect()
         self.rect.x = 100
         self.rect.y = 50
+        self.vy = 0
+        self.vx = 0
+
+    def update(self):
+        self.rect.move_ip(self.vx, self.vy)
