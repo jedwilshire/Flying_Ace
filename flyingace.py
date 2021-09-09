@@ -1,7 +1,10 @@
 import pygame as pg
 import plane, cloud, enemy
 import os
+
 pg.mixer.init()
+
+# Define colors for our game using RGB values
 class Color:
     WHITE = (255, 255, 255)
     BLACK = (0, 0, 0)
@@ -10,6 +13,7 @@ class Color:
     BLUE = (0, 0, 255)
     LIGHT_BLUE = (135,206,250)
 
+# Define formats for our game including subfolders
 class Format:
     WIDTH = 640
     HEIGHT = 480
