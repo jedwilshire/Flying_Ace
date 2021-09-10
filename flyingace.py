@@ -76,12 +76,6 @@ class Application:
             faster = enemy.FasterEnemy(x, y, self.plane)
             self.enemy_group.add(faster)
             self.sprites.add(faster)
-        elif self.plane.points == 20 and len(self.enemy_group) == 3:
-            x = Format.WIDTH + 400
-            y = random.randint(50, Format.HEIGHT - 50)
-            shooter = enemy.ShootingEnemy(x, y, self.plane, self.enemy_group, self.sprites)
-            self.enemy_group.add(shooter)
-            self.sprites.add(shooter)
             
     def handle_keydown(self, key):
         if self.plane.alive:
