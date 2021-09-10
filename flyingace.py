@@ -3,6 +3,7 @@ import plane, cloud, enemy
 import os
 
 pg.mixer.init()
+pg.font.init() # needed for drawing text
 
 # Define colors for our game using RGB values
 class Color:
@@ -22,8 +23,8 @@ class Format:
     game_folder = os.path.dirname(__file__)
     img_folder = os.path.join(game_folder, 'images')
     sounds_folder = os.path.join(game_folder, 'sounds')
-
-
+    # add a font to write with to our Format class
+    font = pg.font.SysFont('Times New Roman', 30, bold = True, italic = False)
 
 class Application:
     def __init__(self):
@@ -35,7 +36,8 @@ class Application:
         self.plane = plane.Plane()       
         self.sprites.add(cloud.Cloud(100, 200), cloud.Cloud(300, 100), cloud.Cloud(500, 300))
         self.enemy_group = pg.sprite.Group()
-        self.enemy_group.add(enemy.Enemy(500, 25), enemy.Enemy(700, 30))
+        # create enemies with reference to player
+        self.enemy_group.add(enemy.Enemy(700, 25, self.plane), enemy.Enemy(1000, 300, self.plane))
         self.sprites.add(self.enemy_group)
         self.sprites.add(self.plane)
 
@@ -56,10 +58,15 @@ class Application:
             # Draw / render
             self.screen.fill(Color.LIGHT_BLUE)
             self.sprites.draw(self.screen)
+            # render method returns a surface
+            # render(str, smooth boolean value, color)
+            pointSurface = Format.font.render(str(self.plane.points), True, Color.BLACK)
+            self.screen.blit(pointSurface, (Format.WIDTH - 100, 20))
             if pg.sprite.spritecollideany(self.plane, self.enemy_group):
                 self.plane.break_up()
             # *after* drawing everything, flip the display
             pg.display.flip()
+            
     
     def handle_keydown(self, key):
         if self.plane.alive:
