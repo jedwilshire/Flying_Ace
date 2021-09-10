@@ -17,7 +17,7 @@ class Plane(Sprite):
         self.engine_sound = pg.mixer.Sound(os.path.join(flyingace.Format.sounds_folder, 'engine_hum.ogg'))
         self.engine_sound.play(loops = -1)
         self.alive = True
-        self.points = 0
+        self.points = 8
         
     def update(self):
         if self.alive:
