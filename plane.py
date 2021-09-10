@@ -17,6 +17,8 @@ class Plane(Sprite):
         self.engine_sound = pg.mixer.Sound(os.path.join(flyingace.Format.sounds_folder, 'engine_hum.ogg'))
         self.engine_sound.play(loops = -1)
         self.alive = True
+        self.points = 0
+        
     def update(self):
         if self.alive:
             if not (self.rect.right >= flyingace.Format.WIDTH and self.vx > 0) and not (self.rect.left <= 0 and self.vx < 0):
@@ -33,6 +35,7 @@ class Plane(Sprite):
         self.image.set_colorkey(flyingace.Color.BLACK)
         self.alive = False
         self.vy = 4
+        self.engine_sound.stop()
 
 
 
