@@ -1,5 +1,5 @@
 import pygame as pg
-import plane, cloud, enemy
+import plane, cloud, enemy, random
 import os
 
 pg.mixer.init()
@@ -62,12 +62,21 @@ class Application:
             # render(str, smooth boolean value, color)
             pointSurface = Format.font.render(str(self.plane.points), True, Color.BLACK)
             self.screen.blit(pointSurface, (Format.WIDTH - 100, 20))
+            self.add_more_planes()
+            
             if pg.sprite.spritecollideany(self.plane, self.enemy_group):
                 self.plane.break_up()
             # *after* drawing everything, flip the display
             pg.display.flip()
             
-    
+    def add_more_planes(self):
+        if self.plane.points == 10 and len(self.enemy_group) == 2:
+            x = Format.WIDTH + 400
+            y = random.randint(50, Format.HEIGHT - 50)            
+            faster = enemy.FasterEnemy(x, y, self.plane)
+            self.enemy_group.add(faster)
+            self.sprites.add(faster)
+            
     def handle_keydown(self, key):
         if self.plane.alive:
             if key == pg.K_w:
